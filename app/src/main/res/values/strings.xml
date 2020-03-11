@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Grupo10</string>
+    <string name="escriba_algo_aqu">Escriba algo aquí</string>
+    <string name="aumentar_disminuir_intensidad">Aumentar/Disminuir Intensidad</string>
+    <string name="salir">Salir</string>
+</resources>
