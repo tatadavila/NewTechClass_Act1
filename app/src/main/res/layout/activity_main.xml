@@ -78,7 +78,7 @@
         android:padding="7dp">
 
         <SeekBar
-            android:id="@+id/inDecreaseBar"
+            android:id="@+id/inDecreaseSeekBar"
             android:layout_width="237dp"
             android:layout_height="37dp"
             android:layout_marginStart="7dp"

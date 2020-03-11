@@ -1,10 +1,7 @@
 package com.edu.uac.co.grupo10;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.app.Activity;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -13,7 +10,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
@@ -21,10 +17,12 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private int barProg;
+
     private Color color;
     private Switch enDiSwitch;
     private EditText wSomText;
-    private SeekBar inDeBar;
+    private SeekBar inDeSeekBar;
     private Button colButton, eButton;
     private LinearLayout colLayout;
 
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         enDiSwitch = (Switch) findViewById(R.id.enableDisableText);
         wSomText = (EditText) findViewById(R.id.writeSomething);
-        inDeBar = (SeekBar) findViewById(R.id.inDecreaseBar);
+        inDeSeekBar = (SeekBar) findViewById(R.id.inDecreaseSeekBar);
         colButton = (Button) findViewById(R.id.changeColor);
         eButton = (Button) findViewById(R.id.exitButton);
         colLayout = (LinearLayout) findViewById(R.id.colorLayout);
@@ -56,7 +54,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        inDeBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        inDeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                UpdateNow();
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         colButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,24 +88,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-        }
-    };
-
     public void openDialog() {
         ExitDialog exitDialog = new ExitDialog();
         exitDialog.show(getSupportFragmentManager(),"exit dialog");
+    }
+
+    public void UpdateNow(){
+        barProg = inDeSeekBar.getProgress();
+        colLayout.setBackgroundColor(Color.parseColor("#5FFF2E") + barProg * 0x10000);
     }
 
 }
